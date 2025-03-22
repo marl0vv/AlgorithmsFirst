@@ -27,6 +27,8 @@ public class LinkedList
             node = node.next;
         }
         return null;
+
+        
     }
 
     public ArrayList<Node> findAll(int _value) {
@@ -40,6 +42,8 @@ public class LinkedList
             current = current.next;
         }
         return nodes;
+
+
      }
 
      public boolean remove(int _value)
@@ -74,18 +78,24 @@ public class LinkedList
             current = current.next;
         }
         return false;
+
+
      }
 
      public void removeAll(int _value)
      {
         while (remove(_value)) {
         }
+
+
      }
 
      public void clear()
      {
         this.head = null;
         this.tail = null;
+
+
      }
 
      public int count()
@@ -97,6 +107,8 @@ public class LinkedList
             current = current.next;
         }
         return count;
+
+
      }
 
      public void insertAfter(Node _nodeAfter, Node _nodeToInsert)
@@ -127,6 +139,7 @@ public class LinkedList
             }
         }
      }
+
 
 }
 
