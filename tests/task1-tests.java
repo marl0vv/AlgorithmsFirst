@@ -120,7 +120,7 @@ class LinkedListTest {
     }
 
     @Test
-    void givenEmptyList_whenInsertN7AfterNull_thenReturnListWithN7AfterHead() {
+    void givenEmptyList_whenInsertN7AfterNull_thenReturnListWithN7AtHead() {
         // Arrange
         LinkedList list = new LinkedList();
 
@@ -137,7 +137,7 @@ class LinkedListTest {
     }
 
     @Test
-    void givenList_whenInsertNull_thenReturnListWithN7AfterHead() {
+    void givenList_whenInsertNull_thenReturnUnchangedList() {
         // Arrange
         Node n1 = new Node(12);
         Node n2 = new Node(55);
