@@ -16,9 +16,13 @@ public class Stack<T>
       {
        return values.size();
 
-       
+
       }
 
+     /*
+        Time complexity - O(1) because getting and removing first element
+        Space complexity - O(1) because no additional space used
+     */
       public T pop()
       {
        if (values.isEmpty()) {
@@ -31,6 +35,10 @@ public class Stack<T>
 
       }
 	  
+      /*
+        Time complexity - O(1) because just adding a new node to a linked list
+        Space complexity - O(1) because no additional space used
+     */
       public void push(T val)
       {
        values.addFirst(val);
