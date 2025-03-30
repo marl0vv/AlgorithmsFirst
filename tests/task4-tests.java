@@ -1,10 +1,17 @@
 package org.gladmik;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.gladmik.BalancedString.isBalancedBracketString;
+import static org.gladmik.PostfixExpression.evaluate;
 
 /**
  * <p> Created on: 26.03.2025
@@ -183,5 +190,111 @@ class StackTest {
 
         assertThat(stack.values).isEqualTo(elements);
         assertThat(stack.size()).isZero();
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "'(())', true",
+            "'{{}}', true",
+            "'[[]]', true",
+            "'(((())))', true",
+            "'[[[[]]]]', true",
+            "'{{{{}}}}', true",
+            "'(({[]}))', true",
+            "'', true",
+            "'(()((())()))', true",
+            "'(()()(()', false",
+            "'[()(){()', false",
+            "'())', false",
+            "'(((()))', false",
+            "'(', false",
+            "')', false",
+            "')(', false",
+            "'())(', false",
+            "'))((', false",
+            "'((())', false"
+    })
+    void givenString_whenIsBalanced_ReturnTrueOrFalse(String input, boolean expected) {
+        assertThat(isBalancedBracketString(input)).isEqualTo(expected);
+    }
+
+    @Test
+    void givenStack_whenGetMinimum_returnMinimumValue() {
+        // Arrange
+        Stack<Integer> stack = new Stack<>();
+        stack.push(32);
+        stack.push(65);
+        stack.push(17);
+
+        // Act & Assert
+        assertThat(stack.getMinimum()).isEqualTo(17);
+    }
+
+    @Test
+    void givenEmptyStack_whenGetMinimum_returnMinimumValue() {
+        // Arrange
+        Stack<Integer> stack = new Stack<>();
+
+        // Act & Assert
+        assertThat(stack.getMinimum()).isNull();
+    }
+
+    @Test
+    void givenStack_whenGetMinimumThenRemoveElementAndGetMinimum_returnMinimumValue() {
+        // Arrange
+        Stack<Integer> stack = new Stack<>();
+
+        stack.push(32);
+        stack.push(65);
+        stack.push(17);
+
+        assertThat(stack.getMinimum()).isEqualTo(17);
+
+        // Act & Assert
+        stack.pop();
+
+        assertThat(stack.getMinimum()).isEqualTo(32);
+    }
+
+    @Test
+    void givenStack_whenGetAverage_thenReturnAverage() {
+        // Arrange
+        Stack<Integer> stack = new Stack<>();
+        stack.push(32);
+        stack.push(65);
+        stack.push(17);
+
+        // Act & Assert
+        assertThat(stack.getAverage()).isEqualTo((32 + 65 + 17) / 3.0);
+    }
+
+    @Test
+    void givenEmptyStack_whenGetAverage_thenReturnZero() {
+        // Arrange
+        Stack<Integer> stack = new Stack<>();
+
+        // Act & Assert
+        assertThat(stack.getAverage()).isNaN();
+    }
+
+    @Test
+    void givenExpressionString_whenEvaluate_thenReturnResult() {
+        // Arrange
+        String expression = "8 2 + 5 * 9 + =";
+
+        // Act
+        int result = evaluate(expression);
+
+        // Assert
+        assertThat(result).isEqualTo(59);
+    }
+
+    @Test
+    void givenEmptyExpressionString_whenEvaluate_thenReturnZero() {
+        // Act
+        int result = evaluate(null);
+
+        // Assert
+        assertThat(result).isZero();
     }
 }
