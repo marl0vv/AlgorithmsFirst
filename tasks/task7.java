@@ -84,8 +84,9 @@ import java.util.*;
                 // Connect next node of the current and new node to each other
                 current.next.prev = newNode;
                 newNode.next = current.next;
-                // Making newNode a currentNode
+                // Connect newNode to a currentNode
                 current.next = newNode;
+                newNode.prev = current;
                 return;
             }
             current = current.next;

@@ -128,6 +128,7 @@ class OrderedListTest {
         assertThat(list.head.next.value).isEqualTo(35);
         assertThat(list.head.next.next.value).isEqualTo(50);
         assertThat(list.head.next.next.prev.value).isEqualTo(35);
+        assertThat(list.head.next.prev.value).isEqualTo(20);
     }
 
     @Test
@@ -216,6 +217,7 @@ class OrderedListTest {
         assertThat(toList(list)).containsExactly(70, 50, 35, 20);
         assertThat(list.tail.prev.value).isEqualTo(35);
         assertThat(list.tail.prev.next.value).isEqualTo(20);
+        assertThat(list.tail.prev.prev.value).isEqualTo(50);
     }
 
     @Test
