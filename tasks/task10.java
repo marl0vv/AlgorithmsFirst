@@ -92,7 +92,7 @@ public class PowerSet
             table.put(value);
         }
 
-        
+
    }
 
     public boolean get(String value)
@@ -104,9 +104,9 @@ public class PowerSet
 
     public boolean remove(String value)
     {
-        int index = table.find(value);
-        if (index != -1) {
-            table.slots[index] = null;
+        int slot = table.find(value);
+        if (slot != -1) {
+            table.slots[slot] = null;
             return true;
         }
         return false;
@@ -117,9 +117,9 @@ public class PowerSet
     public PowerSet intersection(PowerSet set2)
     {
         PowerSet result = new PowerSet();
-        for (String val : this.table.slots) {
-            if (val != null && set2.get(val)) {
-                result.put(val);
+        for (String value : this.table.slots) {
+            if (value != null && set2.get(value)) {
+                result.put(value);
             }
         }
         return result;
@@ -130,11 +130,11 @@ public class PowerSet
     public PowerSet union(PowerSet set2)
     {
         PowerSet result = new PowerSet();
-        for (String val : this.table.slots) {
-            if (val != null) result.put(val);
+        for (String value : this.table.slots) {
+            if (value != null) result.put(value);
         }
-        for (String val : set2.table.slots) {
-            if (val != null) result.put(val);
+        for (String value : set2.table.slots) {
+            if (value != null) result.put(value);
         }
         return result;
 
@@ -144,9 +144,9 @@ public class PowerSet
     public PowerSet difference(PowerSet set2)
     {
         PowerSet result = new PowerSet();
-        for (String val : this.table.slots) {
-            if (val != null && !set2.get(val)) {
-                result.put(val);
+        for (String value : this.table.slots) {
+            if (value != null && !set2.get(value)) {
+                result.put(value);
             }
         }
         return result;
@@ -156,8 +156,8 @@ public class PowerSet
 
     public boolean isSubset(PowerSet set2)
     {
-        for (String val : set2.table.slots) {
-            if (val != null && !this.get(val)) {
+        for (String value : set2.table.slots) {
+            if (value != null && !this.get(value)) {
                 return false;
             }
         }
@@ -170,8 +170,8 @@ public class PowerSet
     {
         if (this.size() != set2.size()) return false;
 
-        for (String val : this.table.slots) {
-            if (val != null && !set2.get(val)) {
+        for (String value : this.table.slots) {
+            if (value != null && !set2.get(value)) {
                 return false;
             }
         }
